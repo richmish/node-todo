@@ -1,4 +1,4 @@
-const MongoClient = require('mongodb').MongoClient ; 
+const {MongoClient, ObjectID} = require('mongodb') ; 
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (err,db) =>{
 	if(err){
@@ -40,8 +40,16 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err,db) =>{
 
 	// 	console.log(JSON.stringify(result.ops,undefined,2));
 	// })
-db.collection('Todos').find().toArray().then((docs) =>{
-console.log(JSON.stringify(docs,undefined,2));});
+
+//delete many
+// delete one
+db.collection('Todos').deleteOne({text : 'Eat Breakfast'}).then((result) =>{ 
+	console.log(result);
+});
+
+// find and delete one
+// db.collection('Todos').find().toArray().then((docs) =>{
+// console.log(JSON.stringify(docs,undefined,2));});
 	 //db.close();
 }
 );
